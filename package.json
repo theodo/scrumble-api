@@ -1,0 +1,38 @@
+{
+  "name": "scrumble-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.coffee",
+  "scripts": {
+    "start": "sleep 2 && npm run migrate:up && coffee src/server.coffee",
+    "watch": "npm run migrate:up && node ./node_modules/nodemon/bin/nodemon.js src/server.coffee",
+    "test": "echo \"Error: no test specified\"",
+    "migrate:up": "db-migrate up --config migrations/database.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theodo/scrumble-api.git"
+  },
+  "author": "Nicolas Girault",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theodo/scrumble-api/issues"
+  },
+  "homepage": "https://github.com/theodo/scrumble-api#readme",
+  "dependencies": {
+    "bluebird": "3.3.5",
+    "coffee-script": "1.10.0",
+    "db-migrate": "0.10.0-beta.11",
+    "db-migrate-pg": "0.1.9",
+    "lodash": "4.11.1",
+    "loopback": "2.27.0",
+    "loopback-boot": "2.18.1",
+    "loopback-component-explorer": "2.4.0",
+    "loopback-connector-postgresql": "2.4.1",
+    "loopback-promisify": "0.2.0",
+    "moment": "2.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "1.9.1"
+  }
+}
