@@ -38,5 +38,17 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "Project": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Sprint": {
+    "dataSource": "db",
+    "public": true
+  },
+  "DailyReport": {
+    "dataSource": "db",
+    "public": true
   }
 }
