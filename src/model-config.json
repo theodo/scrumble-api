@@ -38,5 +38,9 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "TrelloUser": {
+    "dataSource": "db",
+    "public": true
   }
 }

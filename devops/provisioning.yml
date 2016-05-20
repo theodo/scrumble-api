@@ -1,8 +1,6 @@
 - name: Cinelocal provisioning
   hosts: all
   sudo: true
-  pre_tasks:
-    - locale_gen: name=en_US.UTF-8 state=present
   roles:
     - angstwad.docker_ubuntu
     - franklinkim.docker-compose
