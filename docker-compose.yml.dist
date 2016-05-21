@@ -22,4 +22,5 @@ api:
   environment:
     DB_DATABASE: postgres
     DB_USERNAME: postgres
+    GOOGLE_API_SECRET: 'YOUR GOOGLE API SECRET'
   command: npm run watch
