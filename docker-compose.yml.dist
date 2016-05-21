@@ -23,4 +23,6 @@ api:
     DB_DATABASE: postgres
     DB_USERNAME: postgres
     GOOGLE_API_SECRET: 'YOUR GOOGLE API SECRET'
+    TRELLO_KEY: 'YOUR TRELLO KEY'
+    TRELLO_SECRET: 'YOUR TRELLO SECRET'
   command: npm run watch
