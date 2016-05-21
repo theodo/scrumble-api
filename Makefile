@@ -17,7 +17,8 @@ install:
 npm-install:
 	docker-compose run --rm api \
 	npm install --save $(package)\
-	&& sudo chown ${whoami}:${whoami} package.json
+	&& sudo chown ${whoami}:${whoami} package.json\
+	&& sudo chown -R ${whoami}:${whoami} node_modules
 start:
 	docker-compose up api
 
