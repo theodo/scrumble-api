@@ -35,3 +35,4 @@ node_modules
 devops/roles
 devops/hosts/production
 devops/*.retry
+docker-compose.yml
