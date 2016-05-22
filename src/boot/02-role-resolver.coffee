@@ -4,12 +4,13 @@ module.exports = (server) ->
 
   Role.isAdmin = (token, next) ->
     return next(null, false) unless token?
-    server.models.User.find
+    server.models.ScrumbleUser.find
       where:
         email:
           inq: ['nicolasg@theodo.fr']
-    , (err, admins) ->
-      return next(err, token.userId in (admin.id for admin in admins))
+    .then (admins) ->
+      return next(null, token.userId in (admin.id for admin in admins))
+    .catch next
 
   Role.registerResolver 'admin', (role, context, next) ->
     Role.isAdmin(context?.accessToken, next)

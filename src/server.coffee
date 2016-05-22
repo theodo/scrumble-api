@@ -26,3 +26,5 @@ boot app, __dirname, (err) ->
   require('loopback-promisify')(app)
   app.start() if require.main == module
   return
+
+module.exports = app

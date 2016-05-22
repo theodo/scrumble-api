@@ -13,15 +13,7 @@
   },
   "User": {
     "dataSource": "db",
-    "acls": [
-      {
-        "property": "find",
-        "principalType": "ROLE",
-        "principalId": "admin",
-        "permission": "ALLOW",
-        "accessType": "READ"
-      }
-    ]
+    "public": false
   },
   "AccessToken": {
     "dataSource": "db",

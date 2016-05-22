@@ -6,7 +6,8 @@
   "scripts": {
     "start": "sleep 2 && npm run migrate:up && coffee src/server.coffee",
     "watch": "npm run migrate:up && node ./node_modules/nodemon/bin/nodemon.js src/server.coffee",
-    "test": "echo \"Error: no test specified\"",
+    "pretest": "db-migrate --config migrations/database.json reset -e test && db-migrate up --config migrations/database.json -e test;",
+    "test": "NODE_ENV=test mocha 'test/**/*.test.coffee'",
     "migrate:up": "db-migrate up --config migrations/database.json"
   },
   "repository": {
@@ -34,6 +35,8 @@
     "moment": "2.13.0"
   },
   "devDependencies": {
+    "chai": "3.5.0",
+    "mocha": "2.4.5",
     "nodemon": "1.9.1"
   }
 }

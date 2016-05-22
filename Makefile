@@ -19,8 +19,12 @@ npm-install:
 	npm install --save $(package)\
 	&& sudo chown ${whoami}:${whoami} package.json\
 	&& sudo chown -R ${whoami}:${whoami} node_modules
+
 start:
 	docker-compose up api
+test-e2e:
+	docker-compose -f docker-compose.test.yml run --rm apitest \
+	npm test
 
 build:
 	docker build -t nicgirault/scrumble-api .
