@@ -1,6 +1,5 @@
 request = require 'request'
 
-
 module.exports = (ScrumbleUser) ->
   unless process.env.TRELLO_KEY?
     console.warn 'The environment variable TRELLO_KEY is undefined. The Trello authentication will not work'
@@ -14,6 +13,11 @@ module.exports = (ScrumbleUser) ->
     scrumbleUser.createAccessToken(ttl).then (token) ->
       token.token = token.id
 
+  generatePassword = (length) ->
+    characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    result = (characters[Math.floor(Math.random() * characters.length)] for i in [1..length])
+    result.join()
+
   ScrumbleUser.trelloLogin = (req, next) ->
     unless req.body.trelloToken?
       err = new Error 'invalid_request'
@@ -21,7 +25,10 @@ module.exports = (ScrumbleUser) ->
       err.status = 400
       return next err
 
-    request "#{config.TRELLO_API_ENDPOINT}/members/me?key=#{config.TRELLO_KEY}&token=#{req.body.trelloToken}", (err, response, trelloInfo) ->
+    request.get
+      url: "#{config.TRELLO_API_ENDPOINT}/members/me?key=#{config.TRELLO_KEY}&token=#{req.body.trelloToken}"
+      json: true
+    , (err, response, trelloInfo) ->
       return next err if err?
 
       ScrumbleUser.findOne
@@ -29,7 +36,7 @@ module.exports = (ScrumbleUser) ->
       .then (user) ->
         if user?
           authenticate(user).then (token) ->
-            return next null, token
+            return next null, token: token
         else
           user = new ScrumbleUser
             remoteId: trelloInfo.id
@@ -40,7 +47,7 @@ module.exports = (ScrumbleUser) ->
           user.save()
           .then (user) ->
             authenticate(user).then (token) ->
-              return next null, token
+              return next null, token: token
       .catch (err) ->
         console.error err
         next err
