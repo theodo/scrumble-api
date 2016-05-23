@@ -1,9 +1,3 @@
 # Scrumble API
 
-*A loopback API exposing [Scrumble](scrumble.io) data.*
-
-### Installation
-
-```
-make install
-```
+THIS REPO IS DEPRECATED. IT HAS BEEN MERGED IN THE SCRUMBLE REPOSITORY
